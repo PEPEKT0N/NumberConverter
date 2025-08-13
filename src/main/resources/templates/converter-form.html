@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Number System Converter</title>
+</head>
+<body>
+<h1>Number System Converter</h1>
+
+<!-- Форма конвертации -->
+<form method="post" th:action="@{/convert}">
+    <!-- from -->
+    <label for="from">From:</label>
+    <select id="from" name="from">
+        <option th:each="system : ${numberSystems}"
+                th:value="${system}"
+                th:selected="${from == system}">
+            [[${system}]]
+        </option>
+    </select>
+
+    <!-- to -->
+    <label for="to">To:</label>
+    <select id="to" name="to">
+        <option th:each="system : ${numberSystems}"
+                th:value="${system}"
+                th:selected="${to == system}">
+            [[${system}]]
+        </option>
+    </select>
+
+    <!-- value -->
+    <label for="value">Value:</label>
+    <input type="text" id="value" name="value" required th:value="${value}" />
+
+    <!-- submit button -->
+    <button>Convert</button>
+</form>
+
+<p>Result: [[${result}]]</p>
+
+<p><a th:href="@{/}">Go to Index Page</a></p>
+</body>
+</html>
